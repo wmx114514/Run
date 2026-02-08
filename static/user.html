@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>用户中心</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>👤 用户中心</h1>
+    <div class="card">
+      <p>欢迎回来，<span id="username"></span>！</p>
+      <p>角色：普通用户</p>
+    </div>
+    <div class="card">
+      <h3>功能区</h3>
+      <ul>
+        <li>个人资料</li>
+        <li>我的订单</li>
+        <li>系统消息</li>
+      </ul>
+    </div>
+    <button onclick="logout()">退出登录</button>
+  </div>
+
+  <script>
+    document.getElementById("username").textContent = localStorage.getItem("username") || "用户";
+    function logout() {
+      localStorage.clear();
+      window.location.href = "./index.html";
+    }
+  </script>
+</body>
+</html>
