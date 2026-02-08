@@ -1,22 +1,15 @@
-# 登录系统（前端+后端）
-一个简单的登录演示项目，前端 HTML+JS，后端 Python Flask。
+# 登录系统（含管理员面板）
+- 普通用户：账号 123，密码 123
+- 管理员：账号 114514，密码 123
 
-## 账号密码
-普通账号
+## 运行
+1. pip install -r requirements.txt
+2. python app.py
+3. 打开 static/index.html
 
-- 账号：123
-- 密码：123
-
-管理员账号
-
-- 账号：114514
-- 密码：123
-## 运行步骤
-1. 安装依赖：pip install -r requirements.txt
-2. 启动后端：python app.py
-3. 打开前端：浏览器访问 static/index.html
-
-## 技术栈
-- 前端：HTML, CSS, JavaScript
-- 后端：Python Flask
-- 接口：POST /api/login
+## 功能
+- 双角色登录
+- 登录成功自动跳转
+- 普通用户首页
+- 管理员面板
+- 退出登录

@@ -2,32 +2,28 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# 定义两个账号：普通用户 + 管理员
+# 账号配置
 USERS = {
-    "123": "123",
-    "114514": "123"
+    "123": {"pwd": "123", "role": "user"},
+    "114514": {"pwd": "123", "role": "admin"}
 }
 
-# 登录接口
 @app.route("/api/login", methods=["POST"])
 def login():
     data = request.get_json()
     username = data.get("username")
     password = data.get("password")
 
-    if username in USERS and USERS[username] == password:
-        # 判断是否是管理员
-        role = "admin" if username == "114514" else "user"
+    if username in USERS and USERS[username]["pwd"] == password:
         return jsonify({
             "code": 0,
             "msg": "登录成功",
-            "role": role,
+            "role": USERS[username]["role"],
             "username": username
         })
-    else:
-        return jsonify({"code": 1, "msg": "账号或密码错误"})
+    return jsonify({"code": 1, "msg": "账号或密码错误"})
 
-# 允许跨域
+# 跨域
 @app.after_request
 def after_request(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
