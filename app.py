@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
+import os
 
 app = Flask(__name__)
 
@@ -8,6 +9,17 @@ USERS = {
     "114514": {"pwd": "123", "role": "admin"}
 }
 
+# 根路由：返回登录页
+@app.route("/")
+def index():
+    return send_from_directory("static", "index.html")
+
+# 静态文件路由（css、js、html）
+@app.route("/<path:filename>")
+def serve_static(filename):
+    return send_from_directory("static", filename)
+
+# 登录接口
 @app.route("/api/login", methods=["POST"])
 def login():
     data = request.get_json()
